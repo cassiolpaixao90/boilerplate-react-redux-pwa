@@ -1,6 +1,25 @@
 {
   "name": "boilerplate-react-redux-pwa",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "It's sample boilerplate with pwa + react + redux",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cassiolpaixao90/boilerplate-react-redux-pwa.git"
+  },
+  "engines": {
+    "npm": ">=8"
+  },
+  "author": "Cássio Paixão",
+  "license": "MIT",
+  "keywords": [
+    "React",
+    "React-Router",
+    "Redux",
+    "Redux-Saga",
+    "Webpack",
+    "ES6",
+    "PWA"
+  ],
   "private": true,
   "dependencies": {
     "react": "^16.4.1",
