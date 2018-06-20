@@ -12,16 +12,16 @@ export default {
   ],
   target: 'web',
   output: {
-    path: __dirname + '/dist', 
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'app.bundle.js'
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'src')
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   module: {
     loaders: [
