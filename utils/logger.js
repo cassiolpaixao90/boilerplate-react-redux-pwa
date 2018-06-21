@@ -1,29 +1,18 @@
 /* eslint-disable no-console */
 const chalk = require('chalk');
-const ip = require('ip');
-
-
-const divider = chalk.gray('\n-----------------------------------');
 
 const logger = {
 
-  error: err => {
-    console.error(chalk.red(err));
+  error: msg => {
+    console.error(chalk.red(msg));
   },
-
-  appStarted: (port, tunnelStarted) => {
-    console.log(`Servidor iniciado ${chalk.green('✓')}`);
-
-    if (tunnelStarted) {
-      console.log(`Tunnel inicializado ${chalk.green('✓')}`);
-    }
-
-    console.log(`${chalk.bold('Acesso a URLs:')}${divider}
-      Localhost: ${chalk.magenta(`http://localhost:${port}`)}
-      LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
-           (tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
-           ${chalk.blue(`Press ${chalk.italic('CTRL-C')} para parar`)} `);
+  info: msg => {
+    console.info(chalk.yellow(msg));
   },
+  success: msg =>{
+    console.log(chalk.green(`${msg} ${chalk.green('✓')}`));
+  }
+
 };
 
 module.exports = logger;

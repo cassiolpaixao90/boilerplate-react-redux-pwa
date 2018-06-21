@@ -1,26 +1,22 @@
-/* eslint-disable import/default */
-import http from "../tools/app";
+"use strict";
+
+import express from 'express';
 import config from "../settings/environment/index";
 import logger from '../utils/logger';
+import { setupMiddleware } from './middleware'
 
-const argv = require('minimist')(process.argv.slice(2));
-const setup = require('../tools/middleware');
-const isDev = process.env.NODE_ENV !== 'production';
-const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
-const resolve = require('path').resolve;
-
+const app = express();
+const server = require("http").Server(app);
 const port = normalizePort(config.server.port);
 const ip = config.server.ip;
 
+console.log("opa")
 
-setup(http, {
-  outputPath: resolve(process.cwd(), 'build'),
-  publicPath: '/',
-});
+setupMiddleware(server);
 
-http.listen(port);
-http.on('error', onError);
-http.on('listening', onListening);
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
@@ -38,7 +34,7 @@ function normalizePort(val) {
 
 function onError(error) {
   if (error.syscall !== 'listen') {
-    return logger.error(error.message);
+    logger.error(error);
   }
 
   const bind = typeof port === 'string'
@@ -47,7 +43,7 @@ function onError(error) {
 
   switch (error.code) {
     case 'EACCESS':
-      logger.error(bind + 'requires elevated privileges');
+      logger.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
@@ -55,16 +51,19 @@ function onError(error) {
       process.exit(1);
       break;
     default:
-      logger.error(error.message);
+      logger.error(error);
   }
 }
 
 function onListening() {
-  const addr = http.address();
+  const addr = server.address();
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
 
-  // open(`${ip}${port}`);
+    logger.success(`Server listening on http://localhost:${addr.port}`)
 }
+
+export default server;
+
 

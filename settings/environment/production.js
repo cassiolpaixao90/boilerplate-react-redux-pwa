@@ -5,5 +5,5 @@ module.exports = {
         ip: process.env.IP || '',
         port: process.env.PORT || ''
     },
-    api: process.env.API || ''
+    env: 'production'
 };

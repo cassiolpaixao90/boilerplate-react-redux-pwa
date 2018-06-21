@@ -46,13 +46,14 @@
     "webpack-hot-middleware": "2.21.0",
     "brotli-webpack-plugin": "^0.5.0",
     "compression-webpack-plugin": "^1.1.10",
-    "express-static-gzip": "^0.3.2"
+    "express-static-gzip": "^0.3.2",
+    "ngrok": "2.2.2"
   },
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
-    "build:dev": "webpack --config=config/webpack.dev.js",
-    "dev": "nodemon --inspect --watch src/server --watch config src/server/main.js",
-    "prod": "NODE_ENV=production node src/server/main.js"
+    "build": "BABEL_ENV=production webpack --config=webpack/webpack.prod.js --env.NODE_ENV=production ",
+    "build:dev": "webpack --config=webpack/webpack.dev.js",
+    "dev": "nodemon --watch tools --watch config tools/main.js",
+    "prod": "NODE_ENV=production node tools/main.js"
   }
 }

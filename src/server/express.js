@@ -1,11 +1,12 @@
 import express from "express"
 const server = express()
 import path from "path"
+import logger from '../../utils/logger'
 
 const isProd = process.env.NODE_ENV === "production"
 if (!isProd) {
   const webpack = require("webpack")
-  const config = require("../../config/webpack.dev.js")
+  const config = require("../../webpack/webpack.dev")
   const compiler = webpack(config)
 
   const webpackDevMiddleware = require("webpack-dev-middleware")(
@@ -20,7 +21,7 @@ if (!isProd) {
 
   server.use(webpackDevMiddleware)
   server.use(webpackHotMiddlware)
-  console.log("Middleware enabled")
+  logger.success('Middleware mode dev')
 }
 
 const expressStaticGzip = require("express-static-gzip")
@@ -32,7 +33,5 @@ server.use(
 
 const PORT = process.env.PORT || 8081
 server.listen(PORT, () => {
-  console.log(
-    `Server listening on http://localhost:${PORT} in ${process.env.NODE_ENV}`
-  )
+  logger.success(`Server listening on http://localhost:${PORT} in ${process.env.NODE_ENV}`)
 })

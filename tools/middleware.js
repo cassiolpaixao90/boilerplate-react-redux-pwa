@@ -1,54 +1,36 @@
-/* eslint-disable global-require */
-const express = require('express');
-const path = require('path');
-const compression = require('compression');
+import logger from '../utils/logger'
+import config from '../settings/environment/index'
 
-// Dev middleware
-const addDevMiddlewares = (app, webpackConfig) => {
-  console.log('Starting app in dev mode...'.green);
-  const webpack = require('webpack');
-  const webpackDevMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
-  const compiler = webpack(webpackConfig);
-  const middleware = webpackDevMiddleware(compiler, {
-    noInfo: true,
-    publicPath: webpackConfig.output.publicPath,
-    silent: true,
-    stats: 'errors-only',
-  });
+const addMiddlewares = app => {
+  logger.success('Starting app in dev mode...')
+  const webpack = require("webpack")
+  const config = require("../webpack/webpack.dev")
+  const compiler = webpack(config)
 
-  app.use(middleware);
-  app.use(webpackHotMiddleware(compiler));
+  const webpackDevMiddleware = require("webpack-dev-middleware")(
+    compiler,
+    config.devServer
+  )
 
-  const fs = middleware.fileSystem;
+  const webpackHotMiddlware = require("webpack-hot-middleware")(
+    compiler,
+    config.devServer
+  )
 
-  app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
-  });
+  app.use(webpackDevMiddleware)
+  app.use(webpackHotMiddlware)
 };
 
-// Prod middleware
-const addProdMiddlewares = (app, options) => {
-  const publicPath = options.publicPath || '/';
-  const outputPath = options.outputPath || path.resolve(process.cwd(), 'build');
-  app.use(compression());
-  app.use(publicPath, express.static(outputPath));
-  app.get('*', (req, res) => res.sendFile(path.resolve(outputPath, 'index.html')));
-};
-
-module.exports = (app, options) => {
-  const isProduction = process.env.NODE_ENV === 'production';
-  if (isProduction) {
-    addProdMiddlewares(app, options);
-  } else {
-    const webpackConfig = require('../webpack/webpack.config.dev');
-    addDevMiddlewares(app, webpackConfig);
+exports.setupMiddleware = app  => {
+  const dev = config.env === 'development';
+  if (dev) {
+    addDevMiddlewares(app);
   }
+  const expressStaticGzip = require("express-static-gzip")
+  app.use(
+    expressStaticGzip("dist", {
+      enableBrotli: true
+    })
+  )
   return app;
 };
