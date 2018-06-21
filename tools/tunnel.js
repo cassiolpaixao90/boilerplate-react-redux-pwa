@@ -1,40 +1,30 @@
-/* eslint-disable no-console */
+import config from '../settings/environment/index'
 const chalk = require('chalk');
+import logger from '../utils/logger'
 const ip = require('ip');
 const argv = require('minimist')(process.argv.slice(2));
-const isDev = process.env.NODE_ENV !== 'production';
-const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
+const dev = config.env === 'development';
+const envTunel = config.envTunel;
+const ngrok = (dev && envTunel) || argv.tunnel ? require('ngrok') : false;
 
+exports.appConnect = (port) =>{
 
-const divider = chalk.gray('\n-----------------------------------');
+  const divider = chalk.gray('\n\n----------------------------------------');
 
-const tunnel = {
+  if (ngrok) {
+    ngrok.connect(port, (innerErr, tunnelStarted) => {
+      if (innerErr) {
+        return logger.error(innerErr);
+      }
 
-  appStarted: (port, tunnelStarted) => {
-    console.log(`Servidor iniciado ${chalk.green('✓')}`);
+    console.log(`\n${chalk.bold('Acesso a URLs:')}${divider}
+    Localhost: ${chalk.magenta(`http://localhost:${port}`)}
+    LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
+       (tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
+       ${chalk.white(`Press ${chalk.white('CTRL-C')} para parar`)} `);
 
-    if (tunnelStarted) {
-      console.log(`Tunnel inicializado ${chalk.green('✓')}`);
-    }
-
-    console.log(`${chalk.bold('Acesso a URLs:')}${divider}
-      Localhost: ${chalk.magenta(`http://localhost:${port}`)}
-      LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
-           (tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
-           ${chalk.blue(`Press ${chalk.italic('CTRL-C')} para parar`)} `);
-  },
-  connect: (port) =>{
-    if (ngrok) {
-      ngrok.connect(port, (innerErr, url) => {
-        if (innerErr) {
-          return logger.error(innerErr);
-        }
-        this.appStarted(port, url);
-      });
-    } else {
-      logger.appStarted(port);
-    }
+    });
+  } else {
+    logger.error(`error na porta${port}`);
   }
 };
-
-module.exports = tunnel;

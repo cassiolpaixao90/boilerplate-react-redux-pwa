@@ -8,10 +8,12 @@ const setting = require('./' + process.env.NODE_ENV + '.js' || {});
 const all = {
 
     env: setting.env,
+    envTunel: setting.envTunel,
     server: {
         ip: setting.server.ip,
         port: setting.server.port
     }
+
 };
 
 module.exports = _.assign(all, require('./' + process.env.NODE_ENV + '.js' || {}));

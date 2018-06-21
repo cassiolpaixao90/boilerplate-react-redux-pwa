@@ -6,17 +6,14 @@ import logger from '../utils/logger';
 import { setupMiddleware } from './middleware'
 
 const app = express();
-const server = require("http").Server(app);
 const port = normalizePort(config.server.port);
 const ip = config.server.ip;
 
-console.log("opa")
+setupMiddleware(app, port);
 
-setupMiddleware(server);
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+app.listen(port);
+app.on('error', onError);
+app.on('listening', onListening);
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
@@ -56,14 +53,12 @@ function onError(error) {
 }
 
 function onListening() {
-  const addr = server.address();
+  const addr = app.address();
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-
-    logger.success(`Server listening on http://localhost:${addr.port}`)
 }
 
-export default server;
+export default app;
 
 

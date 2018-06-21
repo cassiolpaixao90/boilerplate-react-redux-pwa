@@ -3,7 +3,8 @@
 module.exports = {
     server:{
         ip: process.env.IP || '',
-        port: process.env.PORT || ''
+        port: process.env.PORT || '9000'
     },
-    env: 'production'
+    env: 'production',
+    envTunel: false
 };
