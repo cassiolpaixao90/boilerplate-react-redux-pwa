@@ -68,7 +68,7 @@ npm run prod
 npm run build
 ```
 
-### Troubleshooting
+## Troubleshooting
 
 **nodemon internal watch failed: watch ENOSPC**
 
