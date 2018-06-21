@@ -51,7 +51,6 @@
     "webpack-hot-middleware": "2.21.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --config=config/webpack.dev.js",
     "build": "BABEL_ENV=production webpack --config=webpack/webpack.prod.js --env.NODE_ENV=production ",
     "build:dev": "webpack --config=webpack/webpack.dev.js",
     "dev": "nodemon --watch tools --watch config tools/main.js",
