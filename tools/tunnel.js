@@ -12,19 +12,22 @@ exports.appConnect = (port) =>{
   const divider = chalk.gray('\n\n----------------------------------------');
 
   if (ngrok) {
-    ngrok.connect(port, (innerErr, tunnelStarted) => {
-      if (innerErr) {
-        return logger.error(innerErr);
+    const options = {
+      proto: 'http',
+      addr: port,
+      authtoken: '74jcgkSyZ7n6BmeLWpTqS_51d12j5EKBa6gjhboEqTY'
+    };
+    ngrok.connect(options, (error, url) => {
+      if(error){
+        return logger.error('error'+ error.msg)
       }
-
-    console.log(`\n${chalk.bold('Acesso a URLs:')}${divider}
-    Localhost: ${chalk.magenta(`http://localhost:${port}`)}
-    LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
-       (tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
-       ${chalk.white(`Press ${chalk.white('CTRL-C')} para parar`)} `);
-
+      console.log(`\n${chalk.bold('Acesso a URLs:')}${divider}
+      Localhost: ${chalk.magenta(`http://localhost:${port}`)}
+      LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
+         (url ? `\n    Proxy: ${chalk.magenta(url)}` : '')}${divider}
+         ${chalk.white(`Press ${chalk.white('CTRL-C')} para parar`)} `);
     });
   } else {
-    logger.error(`error na porta${port}`);
+    logger.error(`error na porta ${port}`);
   }
 };

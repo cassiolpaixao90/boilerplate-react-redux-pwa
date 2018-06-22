@@ -3,7 +3,7 @@
 module.exports = {
   server: {
     ip: 'http://localhost:',
-    port: 3000
+    port: '9000'
   },
   env: 'development',
   envTunel: true

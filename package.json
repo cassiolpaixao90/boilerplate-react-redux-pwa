@@ -39,7 +39,7 @@
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
-    "ngrok": "3.0.1",
+    "ngrok": "2.2.2",
     "optimize-css-assets-webpack-plugin": "^4.0.2",
     "react": "^16.4.1",
     "style-loader": "^0.21.0",
@@ -53,7 +53,7 @@
   "scripts": {
     "build": "BABEL_ENV=production webpack --config=webpack/webpack.prod.js --env.NODE_ENV=production ",
     "build:dev": "webpack --config=webpack/webpack.dev.js",
-    "dev": "nodemon --watch tools --watch config tools/main.js",
+    "dev": "nodemon --inspect --watch tools --watch config tools/main.js",
     "prod": "NODE_ENV=production node tools/main.js"
   }
 }

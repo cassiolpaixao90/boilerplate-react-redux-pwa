@@ -1,8 +1,7 @@
-import logger from '../utils/logger'
-import config from '../settings/environment/index'
-import { appConnect } from './tunnel'
 
-exports.setupMiddleware = (app, port)  => {
+import config from '../settings/environment/index'
+
+exports.setupMiddleware = (app) => {
   const dev = config.env === 'development';
   if (dev) {
     const webpack = require("webpack")
@@ -20,10 +19,8 @@ exports.setupMiddleware = (app, port)  => {
     )
     app.use(webpackDevMiddleware)
     app.use(webpackHotMiddlware)
-    appConnect(port)
-    logger.success('Started app in dev mode...')
-  }else{
-    logger.success('Started app in prod mode...')
+
+
   }
   const expressStaticGzip = require("express-static-gzip")
   app.use(expressStaticGzip("dist", { enableBrotli: true }))
