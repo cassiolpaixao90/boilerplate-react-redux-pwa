@@ -2,9 +2,9 @@
 
 module.exports = {
     server:{
-        ip: process.env.IP || '',
-        port: process.env.PORT || '9000'
+        host: process.env.HOST || '0.0.0.0',
+        port: process.env.PORT || 9000
     },
-    env: 'production',
+    envNode: 'production',
     envTunel: false
 };

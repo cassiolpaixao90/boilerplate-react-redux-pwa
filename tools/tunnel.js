@@ -1,9 +1,10 @@
-import config from '../settings/environment/index'
-const chalk = require('chalk');
-import logger from '../utils/logger'
-const ip = require('ip');
+import config         from '../settings/environment/index'
+import chalk          from 'chalk'
+import logger         from '../utils/logger'
+import ip             from 'ip'
+
 const argv = require('minimist')(process.argv.slice(2));
-const dev = config.env === 'development';
+const dev = config.envNode === 'development';
 const envTunel = config.envTunel;
 const ngrok = (dev && envTunel) || argv.tunnel ? require('ngrok') : false;
 
@@ -12,22 +13,20 @@ exports.appConnect = (port) =>{
   const divider = chalk.gray('\n\n----------------------------------------');
 
   if (ngrok) {
-    const options = {
-      proto: 'http',
-      addr: port,
-      authtoken: '74jcgkSyZ7n6BmeLWpTqS_51d12j5EKBa6gjhboEqTY'
-    };
+    const options = config.ngrok ? config.ngrok : `${config.port}`
+    console.log('options', options)
+    console.log(`\n\n${chalk.bold('Access the URLs:')}${divider}
+      Localhost: ${chalk.magenta(`http://localhost:${port}`)}
+      LAN ${chalk.magenta(`http://${ip.address()}:${port}`)} `);
+
     ngrok.connect(options, (error, url) => {
       if(error){
-        return logger.error('error'+ error.msg)
+        return logger.error(`${error.msg}`)
       }
-      console.log(`\n${chalk.bold('Acesso a URLs:')}${divider}
-      Localhost: ${chalk.magenta(`http://localhost:${port}`)}
-      LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
-         (url ? `\n    Proxy: ${chalk.magenta(url)}` : '')}${divider}
-         ${chalk.white(`Press ${chalk.white('CTRL-C')} para parar`)} `);
+      console.log(`${(url ? `      Proxy: ${chalk.magenta(url)}` : '')}${divider}
+         \n       ${chalk.white(`Press ${chalk.white('CTRL-C')} para parar`)}\n\n `);
     });
   } else {
-    logger.error(`error na porta ${port}`);
+    logger.error(`error in connection with tunnel`);
   }
 };

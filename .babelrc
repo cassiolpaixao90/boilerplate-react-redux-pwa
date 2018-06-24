@@ -8,6 +8,13 @@
         },
         "debug": false
       }
-    ]
-  ]
+    ],
+    "babel-preset-react"
+  ],
+  "plugins": ["syntax-dynamic-import", "universal-import"],
+  "env": {
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
+    }
+  }
 }

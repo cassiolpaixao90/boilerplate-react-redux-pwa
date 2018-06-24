@@ -1,13 +1,11 @@
-/* eslint-disable no-console */
-const chalk = require('chalk');
+import chalk      from 'chalk'
 
 const logger = {
-
   error: msg => {
-    console.error(chalk.red(msg));
+    console.log(chalk.red(msg));
   },
   info: msg => {
-    console.info(chalk.yellow(msg));
+    console.log(chalk.yellow(msg));
   },
   success: msg =>{
     console.log(chalk.green(`${msg} ${chalk.green('✓')}`));

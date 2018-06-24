@@ -1,22 +1,24 @@
 'use strict';
 
-import _ from 'lodash';
-
-process.env.NODE_ENV =  process.env.NODE_ENV || 'development';
-const setting = require('./' + process.env.NODE_ENV + '.js' || {});
+import _       from 'lodash'
+const env = process.env.NODE_ENV || 'development'
+const setting = require(`./${env}.js`);
 
 const all = {
-
-    env: setting.env,
+    envNode: setting.envNode,
     envTunel: setting.envTunel,
     server: {
-        ip: setting.server.ip,
+        host: setting.server.host,
         port: setting.server.port
+    },
+    ngrok: {
+      proto: setting.proto,
+      addr: setting.addr,
+      authtoken: setting.authtoken
     }
-
 };
 
-module.exports = _.assign(all, require('./' + process.env.NODE_ENV + '.js' || {}));
+module.exports = _.assign(all, setting);
 
 
 
