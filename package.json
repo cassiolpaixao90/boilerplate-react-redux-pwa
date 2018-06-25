@@ -71,6 +71,6 @@
   },
   "scripts": {
     "prod": "NODE_ENV=production node ./tools/main.js",
-    "dev": "nodemon --watch ./server --watch config --inspect ./tools/main.js"
+    "dev": "nodemon --watch ./server --watch webpack --watch settings --inspect ./tools/main.js"
   }
 }

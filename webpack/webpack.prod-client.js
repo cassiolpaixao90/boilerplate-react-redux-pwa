@@ -1,11 +1,11 @@
-import path from "path"
-import webpack from "webpack"
-import MiniCSSExtractPlugin from "mini-css-extract-plugin"
-import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin"
-import UglifyJSPlugin from "uglifyjs-webpack-plugin"
-import CompressionPlugin from "compression-webpack-plugin"
-import BrotliPlugin from "brotli-webpack-plugin"
-import config from '../settings/environment/index'
+import path                     from 'path'
+import webpack                  from 'webpack'
+import MiniCSSExtractPlugin     from 'mini-css-extract-plugin'
+import OptimizeCssAssetsPlugin  from 'optimize-css-assets-webpack-plugin'
+import UglifyJSPlugin           from 'uglifyjs-webpack-plugin'
+import CompressionPlugin        from 'compression-webpack-plugin'
+import BrotliPlugin             from 'brotli-webpack-plugin'
+import config                   from '../settings/environment/index'
 
 module.exports = {
   name: "client",

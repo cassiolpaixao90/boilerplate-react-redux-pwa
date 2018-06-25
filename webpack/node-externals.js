@@ -1,8 +1,8 @@
-import fs from "fs"
-import path from "path"
+import fs     from 'fs'
+import path   from 'path'
 
 const res = p => path.resolve(__dirname, p)
-const nodeModules = res("../node_modules")
+const nodeModules = res('../node_modules')
 const externals = fs
   .readdirSync(nodeModules)
   .filter(x => !/\.bin|react-universal-component|webpack-flush-chunks/.test(x))
@@ -10,6 +10,6 @@ const externals = fs
     externals[mod] = `commonjs ${mod}`
     return externals
   }, {})
-externals["react-dom/server"] = "commonjs react-dom/server"
+externals['react-dom/server'] = 'commonjs react-dom/server'
 
 module.exports = externals

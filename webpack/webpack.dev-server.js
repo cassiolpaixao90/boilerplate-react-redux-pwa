@@ -1,7 +1,7 @@
-import path from "path"
-import webpack from "webpack"
-import externals from "./node-externals"
-import config from '../settings/environment/index'
+import path       from 'path'
+import webpack    from 'webpack'
+import externals  from './node-externals'
+import config     from '../settings/environment/index'
 
 module.exports = {
   name: "server",

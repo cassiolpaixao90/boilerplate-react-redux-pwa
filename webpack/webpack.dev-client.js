@@ -1,5 +1,5 @@
-import path            from "path"
-import webpack         from "webpack"
+import path            from 'path'
+import webpack         from 'webpack'
 import config          from '../settings/environment/index'
 
 module.exports = {
