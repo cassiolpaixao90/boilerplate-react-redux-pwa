@@ -50,22 +50,23 @@ git clone https://github.com/cassiolpaixao90/boilerplate-react-redux-pwa.git
 cd boilerplate-react-redux-pwa
 npm install
 ```
-**3. Run mode Development**
+
+**3. Run generate certificate localhost HTTPS**
+
+```bash
+npm run certs
+```
+
+**4. Run mode Development**
 
 ```bash
 npm run dev
 ```
 
-**4. Run mode Production**
+**5. Run mode Production**
 
 ```bash
 npm run prod
-```
-
-**5. Build application for production**
-
-```bash
-npm run build
 ```
 
 ## Troubleshooting
