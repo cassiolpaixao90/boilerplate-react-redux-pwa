@@ -16,8 +16,8 @@ exports.appConnect = (port) =>{
     const options = config.ngrok ? config.ngrok : `${config.port}`
 
     console.log(`\n\n${chalk.bold('Access the URLs:')}${divider}
-      Localhost: ${chalk.magenta(`http://localhost:${port}`)}
-      LAN ${chalk.magenta(`http://${ip.address()}:${port}`)} `);
+      Localhost: ${chalk.magenta(`https://localhost:${port}`)}
+      LAN ${chalk.magenta(`https://${ip.address()}:${port}`)} `);
 
     ngrok.connect(options, (error, url) => {
       if(error){

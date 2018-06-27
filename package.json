@@ -17,7 +17,8 @@
     "Redux-Saga",
     "Webpack",
     "ES6",
-    "PWA"
+    "PWA",
+    "WorkBox"
   ],
   "license": "MIT",
   "dependencies": {
@@ -38,6 +39,7 @@
     "cross-env": "5.2.0",
     "css-loader": "^0.28.11",
     "cssnano": "*",
+    "devcert-with-localhost": "^0.3.3",
     "ejs-loader": "^0.3.1",
     "express": "^4.16.3",
     "express-static-gzip": "^0.3.2",
@@ -72,6 +74,7 @@
   },
   "scripts": {
     "prod": "NODE_ENV=production node ./tools/main.js",
-    "dev": "nodemon --watch ./server --watch webpack --watch settings --inspect ./tools/main.js"
+    "dev": "nodemon --watch ./server --watch webpack --watch settings --inspect ./tools/main.js",
+    "certs": "node utils/dev-certs.js"
   }
 }

@@ -8,6 +8,8 @@ import configProdClient             from '../webpack/webpack.prod-client.js'
 import configProdServer             from '../webpack/webpack.prod-server.js'
 import { appConnect }               from './proxy'
 import config                       from '../settings/environment/index'
+import https                        from 'https'
+import fs                           from 'fs'
 
 const server  = express()
 const isDev   = config.envNode === 'development'
@@ -15,11 +17,15 @@ const port    = config.server.port
 let isBuilt   = false
 
 const done = () => {
-  !isBuilt && server.listen(port, () => {
-      isBuilt = true
-      if (isDev) appConnect(`${port}`)
-      else console.log( `Server listening on ${config.envNode}`)
-    })
+
+  const pkey     = fs.readFileSync('certs/key.pem');
+  const pcert    = fs.readFileSync('certs/cert.pem');
+  const options  = { key: pkey, cert: pcert };
+  !isBuilt && https.createServer(options, server).listen(port, () => {
+    isBuilt = true
+    if (isDev) appConnect(`${port}`)
+    else console.log( `Server listening on ${config.envNode}`)
+  });
 }
 
 if (isDev) {
