@@ -25,7 +25,6 @@ const done = () => {
 if (isDev) {
   const compiler              = webpack([configDevClient, configDevServer])
   const clientCompiler        = compiler.compilers[0]
-  const serverCompiler        = compiler.compilers[1]
   const webpackDevMiddleware  = require('webpack-dev-middleware')(
     compiler,
     configDevClient.devServer

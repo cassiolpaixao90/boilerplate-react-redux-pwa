@@ -5,6 +5,7 @@ import Routes               from "./components/Routes"
 import { flushChunkNames }  from "react-universal-component/server"
 import flushChunks          from "webpack-flush-chunks"
 
+
 export default ({ clientStats }) => (req, res) => {
   const { js, styles, cssHash } = flushChunks(clientStats, {
     chunkNames: flushChunkNames()
