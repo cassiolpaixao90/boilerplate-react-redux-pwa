@@ -11,16 +11,18 @@ Please consult the steps to deploy your project
 
 ### Pré-requisites
 
-- NodeJS 8.x
+- NodeJS 8.1.x
 - VSCode
 - NPM
 - WebPack CLI
+- Nodemon
  
 ### Technologies
 
 | Tech | Description |
 | --- | --- |
 | NodeJS | [https://nodejs.org/en/download/](https://nodejs.org/en/download/) |
+| Nodemon | [https://www.npmjs.com/package/nodemon](https://www.npmjs.com/package/nodemon) |
 | NPM | [https://docs.npmjs.com/](https://docs.npmjs.com/)  |
 | WebPack CLI | [https://webpack.js.org/](https://webpack.js.org/)  |
 | ajv | [https://github.com/epoberezkin/ajv](https://github.com/epoberezkin/ajv) |

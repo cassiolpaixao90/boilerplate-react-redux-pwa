@@ -11,7 +11,7 @@ const ngrok = (dev && envTunel) || argv.tunnel ? require('ngrok') : false;
 exports.appConnect = (port) =>{
 
   const divider = chalk.gray('\n\n----------------------------------------');
-
+  debugger
   if (ngrok) {
     const options = config.ngrok ? config.ngrok : `${config.port}`
 
