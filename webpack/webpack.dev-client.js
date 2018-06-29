@@ -1,16 +1,23 @@
 import path            from 'path'
 import webpack         from 'webpack'
 import config          from '../settings/environment/index'
+import workboxPlugin   from 'workbox-webpack-plugin'
+import cleanPlugin     from'clean-webpack-plugin'
+
+
+const VENDOR_LIBS = [
+  'react', 'react-dom'
+];
 
 module.exports = {
   name: "client",
   entry: {
-    vendor: ["react", "react-dom"],
+    vendor: VENDOR_LIBS,
     main: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",
       "webpack-hot-middleware/client?reload=true",
-      "./src/main.js"
+      "./src/app.js"
     ]
   },
   mode: config.envNode,
@@ -58,12 +65,22 @@ module.exports = {
     ]
   },
   plugins: [
+    new cleanPlugin(['dist']),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify(`${config.envNode}`),
         WEBPACK: true
       }
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new workboxPlugin.GenerateSW({
+      swDest: 'sw.js',
+      clientsClaim: true,
+      skipWaiting: true,
+      runtimeCaching: [{
+      urlPattern: new RegExp('https://localhost:9000'),
+      handler: 'staleWhileRevalidate'
+      }]
+    })
   ]
 }

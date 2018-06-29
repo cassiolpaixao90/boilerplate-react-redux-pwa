@@ -11,7 +11,7 @@ module.exports = {
   name: "client",
   entry: {
     vendor: ["react", "react-dom"],
-    main: ["./src/main.js"]
+    main: ["./src/app.js"]
   },
   mode: config.envNode,
   output: {

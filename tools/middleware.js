@@ -17,7 +17,6 @@ const port    = config.server.port
 let isBuilt   = false
 
 const done = () => {
-
   const pkey     = fs.readFileSync('certs/key.pem');
   const pcert    = fs.readFileSync('certs/cert.pem');
   const options  = { key: pkey, cert: pcert };
@@ -47,6 +46,7 @@ if (isDev) {
   webpack([configProdClient, configProdServer]).run((err, stats) => {
     const clientStats   = stats.toJson().children[0]
     const render        = require('../build/prod-server-bundle.js').default
+    console.log("render", render)
     console.log( stats.toString({ colors: true }))
     server.use( expressStaticGzip('dist', { enableBrotli: true }))
     server.use(render({ clientStats }))
