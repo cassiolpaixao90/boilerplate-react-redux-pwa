@@ -1,16 +1,13 @@
-import React              from "react"
-import ReactDOM           from "react-dom"
-import AppRoot            from "./components/AppRoot"
-import { AppContainer }   from "react-hot-loader"
-import "./main.css"
-import "./content.css"
-import "./images/link.jpg"
+import React from "react"
+import ReactDOM from "react-dom"
+import AppRoot from "./components/AppRoot"
+import { AppContainer } from "react-hot-loader"
+import './main.css'
+import './content.css'
 
 function render(Component) {
-  ReactDOM.hydrate(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
+  ReactDOM.render(
+    <AppRoot />,
     document.getElementById("react-root")
   )
 }

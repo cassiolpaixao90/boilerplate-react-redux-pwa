@@ -80,7 +80,7 @@
   },
   "scripts": {
     "prod": "NODE_ENV=production babel-node ./tools/middleware.js --presets es2015,stage-2",
-    "dev": "nodemon --watch ./server --watch webpack --watch settings --inspect ./tools/middleware.js --exec babel-node --presets es2015,stage-2",
+    "dev": "nodemon --watch ./server --watch webpack --watch settings --inspect ./scripts/start-local.dev.js --exec babel-node --presets es2015,stage-2",
     "certs": "node utils/dev-certs.js"
   }
 }

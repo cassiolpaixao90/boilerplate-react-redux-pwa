@@ -1,6 +1,4 @@
 import React from "react"
-import { BrowserRouter as Router } from "react-router-dom"
-import Routes from "./Routes"
 
 export default class extends React.Component {
   constructor(props) {
@@ -10,9 +8,11 @@ export default class extends React.Component {
 
   render() {
     return (
-      <Router>
-        <Routes />
-      </Router>
+      <div className="profile">
+        <img src={require("../images/link.jpg")} />
+        <h1>{this.props.heading}</h1>
+        <div className="content">{this.props.content}</div>
+      </div>
     )
   }
 }
