@@ -9,7 +9,7 @@ module.exports = {
       'babel-runtime/regenerator',
       'babel-register',
       'webpack-hot-middleware/client?reload=true',
-      './src/app.js'
+      './src/app.jsx'
     ]
   },
   mode: 'development',
@@ -26,10 +26,13 @@ module.exports = {
     }
   },
   devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -44,6 +47,7 @@ module.exports = {
           { loader: 'css-loader' }
         ]
       },
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
       {
         test: /\.jpg$/,
         use: [
