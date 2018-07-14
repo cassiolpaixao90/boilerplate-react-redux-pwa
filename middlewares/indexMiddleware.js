@@ -1,19 +1,14 @@
-/* eslint-disable global-require */
-
 import setting from '../settings/environment/index'
 
 module.exports = (app, options) => {
-
   const isDev  = setting.envNode === 'development'
-
   if (!isDev) {
-    const addProdMiddlewares = require('./productionMiddlewares');
-    addProdMiddlewares(app, options);
+    const prodMiddlewares = require('./productionMiddlewares');
+    prodMiddlewares(app, options);
   } else {
     const webpackConfig = require('../webpack/webpack.config.dev');
-    const addDevMiddlewares = require('./developmentMiddleware');
-    addDevMiddlewares(app, webpackConfig);
+    const devMiddlewares = require('./developmentMiddleware');
+    devMiddlewares(app, webpackConfig);
   }
-
   return app;
 };
