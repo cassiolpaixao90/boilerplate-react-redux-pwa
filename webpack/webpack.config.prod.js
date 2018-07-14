@@ -10,7 +10,7 @@ import BrotliPlugin             from 'brotli-webpack-plugin'
 module.exports = env => {
   return {
     entry: {
-      main: ['./src/app.jsx']
+      main: ['./src/app.js']
     },
     mode: 'production',
     output: {

@@ -5,11 +5,12 @@ import HTMLWebpackPlugin from 'html-webpack-plugin'
 module.exports = {
   entry: {
     main: [
+      'babel-polyfill',
       'react-hot-loader/patch',
       'babel-runtime/regenerator',
       'babel-register',
       'webpack-hot-middleware/client?reload=true',
-      './src/app.jsx'
+      './src/app.js'
     ]
   },
   mode: 'development',
@@ -26,13 +27,10 @@ module.exports = {
     }
   },
   devtool: 'source-map',
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: [
           {
