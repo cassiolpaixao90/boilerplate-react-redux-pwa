@@ -1,21 +1,19 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import AppRoot from "./components/AppRoot"
-import { AppContainer } from "react-hot-loader"
-import 'onsenui/css/onsenui.css';
-import 'onsenui/css/onsen-css-components.css';
+import React from "react";
+import { render } from 'react-dom';
+import configureStore from "./store/configureStore";
+import { Provider } from "react-redux";
+import { Router, browserHistory } from "react-router";
+import routes from "./router";
+import { loadDesafio } from './actions/desafioActions';
+import './styles/styles.css';
+import './styles/reset.css';
 
-function render(Component) {
-  ReactDOM.render(
-    <AppRoot />,
-    document.getElementById("react-root")
-  )
-}
-render(AppRoot)
+const store = configureStore();
+store.dispatch(loadDesafio());
 
-if (module.hot) {
-  module.hot.accept("./components/AppRoot.js", () => {
-    const NewAppRoot = require("./components/AppRoot").default
-    render(NewAppRoot)
-  })
-}
+render(
+  <Provider store={store}>
+    <Router history={browserHistory} routes={routes} />
+  </Provider>,
+  document.getElementById('app')
+);

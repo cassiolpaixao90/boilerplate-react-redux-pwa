@@ -46,19 +46,24 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000'
+        test: /\.(png|jpe?g|gif)(\?\S*)?$/,
+        loader: "url-loader?limit=100000&name=[name].[ext]"
       },
       {
-        test: /\.jpg$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[name].[ext]'
-            }
-          }
-        ]
+          test: /\.(eot)(\?\S*)?$/,
+          loader: "url-loader?limit=100000&mimetype=application/font-otf&name=[name].[ext]"
+      },
+      {
+          test: /\.(woff|woff2)(\?\S*)?$/,
+          loader: "url-loader?limit=100000&mimetype=application/x-font-woff&name=[name].[ext]"
+      },
+      {
+          test: /\.(ttf)(\?\S*)?$/,
+          loader: "url-loader?limit=100000&mimetype=application/octet-stream&name=[name].[ext]"
+      },
+      {
+          test: /\.(svg)(\?\S*)?$/,
+          loader: "url-loader?limit=100000&mimetype=image/svg+xml&name=[name].[ext]"
       }
     ]
   },
@@ -70,9 +75,8 @@ module.exports = {
       }
     }),
     new HTMLWebpackPlugin({
-      template: './src/index.ejs',
-      inject: true,
-      title: 'PWA React Redux Saga'
+      template: './src/index.html',
+      inject: true
     })
   ]
 }
