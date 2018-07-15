@@ -68,9 +68,8 @@ module.exports = env => {
         }
       }),
       new HTMLWebpackPlugin({
-        template: './src/index.ejs',
-        inject: true,
-        title: 'PWA React Redux Saga'
+        template: './src/index.html',
+        inject: true
       }),
       new UglifyJSPlugin(),
       new CompressionPlugin({
