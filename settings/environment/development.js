@@ -2,7 +2,7 @@
 
 module.exports = {
   server: {
-    host: 'http://localhost:',
+    host: 'localhost',
     port: 9000
   },
   envNode: 'development',

@@ -2,10 +2,9 @@ const chalk                     = require('chalk')
 const fs                        = require('fs')
 const path                      = require('path')
 const getDevelopmentCertificate = require('devcert-with-localhost').default;
-
-const private_folder_path = path.join(__dirname, '..', 'certs');
-const cert_key_path       = path.join(private_folder_path, 'key.pem');
-const cert_path           = path.join(private_folder_path, 'cert.pem');
+const private_folder_path       = path.join(__dirname, '..', 'certs');
+const cert_key_path             = path.join(private_folder_path, 'key.pem');
+const cert_path                 = path.join(private_folder_path, 'cert.pem');
 
 if (fs.existsSync(cert_path)) {
   process.stdout.write(chalk.yellow('Existing certificate found') + chalk.dim(' – Replacing\n'));

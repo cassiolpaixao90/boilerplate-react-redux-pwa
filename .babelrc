@@ -14,8 +14,9 @@
     "babel-preset-react"
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    "universal-import"
+    "transform-class-properties",
+    "transform-runtime",
+    "transform-object-rest-spread"
   ],
   "env": {
     "development": {
