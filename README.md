@@ -13,9 +13,9 @@ Please consult the steps to deploy your project
 
 - NodeJS 8.1.x
 - VSCode
-- NPM
+- NPM or YARN
 - WebPack CLI
-- Nodemon
+- MLab
  
 ### Technologies
 
@@ -46,34 +46,41 @@ Please consult the steps to deploy your project
 git clone https://github.com/cassiolpaixao90/boilerplate-react-redux-pwa.git
 ```
 
-**2. Install dependence the app using NPM**
+**2. Install dependence the app using NPM or YARN**
 
 ```bash
 cd boilerplate-react-redux-pwa
 npm install
 ```
 
-**3. Run generate certificate localhost HTTPS**
+<!-- **3. Run generate certificate localhost HTTPS**
 
 ```bash
 npm run certs
-```
+``` -->
 
-**4. Run mode Development**
+**3. Run mode Development**
 
 ```bash
 npm run dev
 ```
 
-**5. Run mode Production**
+**4. Run mode Production**
 
 ```bash
 npm run prod
 ```
 
+## boilerplate-react-pwa-api-postman-collection
+
+**Try out the Boilerplate-React-PWA REST API using Postman with this ready-made Postman collection.**
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/6983e6f507e09e3b7763)
+
+
 ## Troubleshooting
 
-**nodemon internal watch failed: watch ENOSPC**
+**Nodemon internal watch failed: watch ENOSPC**
 
 ```bash
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

@@ -2,7 +2,7 @@
 
 import mongoose         from "mongoose";
 import Promise          from "bluebird";
-import WorldCupError    from '../exception/exception';
+import CustomError      from '../exception/exception';
 import moment           from "moment";
 const bcrypt = Promise.promisifyAll(require("bcrypt"));
 
@@ -63,7 +63,7 @@ UserSchema.methods.passwordIsValid = function (password) {
         return bcrypt.compareAsync(password, this.password);
     }
     catch (err) {
-        throw new WorldCupError(err, "404");
+        throw new CustomError(err, "404");
     }
 };
 
