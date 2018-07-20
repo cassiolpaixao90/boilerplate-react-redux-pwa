@@ -8,9 +8,11 @@ mongoose.Promise = Promise;
 const _internalConnectionPool = {};
 
 export default function (url, options) {
-    const opts = Object.assign({}, {
-        server: { poolSize: 1 }
-    }, options);
+
+    const opts = {
+      native_parser: true,
+      poolSize: 5
+    }
 
     return new Promise(function (resolve, reject) {
         const address = `${url}`;

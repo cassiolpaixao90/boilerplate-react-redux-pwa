@@ -13,7 +13,7 @@ module.exports = {
     authtoken: '74jcgkSyZ7n6BmeLWpTqS_51d12j5EKBa6gjhboEqTY'
   },
   mongo: {
-    uri: "mongodb:boilerplate-react-pwa:boilerplate-react-pwa2018@ds141641.mlab.com:41641/boilerplate-react-pwa"
+    uri: "mongodb://boilerplate-react-pwa:boilerplate-react-pwa2018@ds141641.mlab.com:41641/boilerplate-react-pwa"
   },
   secrets: {
     session: 'boilerplate-react-pwa',
