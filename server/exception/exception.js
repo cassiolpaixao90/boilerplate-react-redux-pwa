@@ -4,7 +4,7 @@
 import messageProperties from "../utils/messageProperties";
 
 
-module.exports = function PocError(message, status) {
+module.exports = function CustomError(message, status) {
   Error.captureStackTrace(this, this.constructor);
   this.name = this.constructor.name;
   this.message = message ||  messageProperties.MESSAGE_FALHA_REQUEST;

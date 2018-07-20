@@ -1,7 +1,7 @@
 import { getUserModel, getLoginModel }  from "../data_access/modelFactory";
 import repository                       from "../repositories/user-repository";
 import jwt                              from "jsonwebtoken";
-import PocError                         from '../exception/exception';
+import CustomError                         from '../exception/exception';
 import config                           from "../../settings/environment";
 import messageProperties                from "../utils/messageProperties";
 
@@ -18,12 +18,12 @@ exports.save = async (data) => {
         const User = await getUserModel();
         const existingUser = await repository.getByEmail(data.email, User);
         if (existingUser) {
-            throw new PocError(`O e-mail ${data.email} já existe.`, 409);
+            throw new CustomError(`O e-mail ${data.email} já existe.`, 409);
         }
         await repository.create(data, User);
     }
     catch (e) {
-        throw new PocError(e.message, e.status);
+        throw new CustomError(e.message, e.status);
     }
 };
 
@@ -32,20 +32,20 @@ exports.authenticate = async (data, req) => {
         const User = await getUserModel();
         const existingUser = await repository.getByEmail(data.email, User);
         if (!existingUser) {
-            throw new PocError(`Usuario ${data.email} não cadastrado!`, 409);
+            throw new CustomError(`Usuario ${data.email} não cadastrado!`, 409);
         }
         const {clientIp} = req;
         const identityKey = `${data.email}-${clientIp}`;
         const Login = await getLoginModel();
         if (!await existingUser.passwordIsValid(data.password)) {
             await Login.failedLoginAttempt(identityKey);
-            throw new PocError(messageProperties.MESSAGE_USUARIO_INVALIDO, 404);
+            throw new CustomError(messageProperties.MESSAGE_USUARIO_INVALIDO, 404);
         }
         if( !await Login.canAthenticate(identityKey)){
-            throw new PocError(messageProperties.MESSAGE_CONTA_TEMP_BLOQ, 500);
+            throw new CustomError(messageProperties.MESSAGE_CONTA_TEMP_BLOQ, 500);
         }
         if( await Login.inProgress(identityKey)){
-            throw new PocError(messageProperties.MESSAGE_USUARIO_AUTH, 500);
+            throw new CustomError(messageProperties.MESSAGE_USUARIO_AUTH, 500);
         }
         await Login.successfulLoginAttempt(identityKey);
         return await generateToken({
@@ -55,7 +55,7 @@ exports.authenticate = async (data, req) => {
             roles: existingUser.roles
         });
     } catch (e) {
-        throw new PocError(e.message, e.status);
+        throw new CustomError(e.message, e.status);
     }
 };
 
@@ -65,7 +65,7 @@ exports.refreshToken = async (token) => {
         const data = await decodeToken(token);
         const user = await repository.getById(data.id, User);
         if (!user) {
-            throw new PocError(messageProperties.MESSAGE_TOKEN_NAO_ENCONTRADO, 404);
+            throw new CustomError(messageProperties.MESSAGE_TOKEN_NAO_ENCONTRADO, 404);
         }
         return await generateToken({
             id: user._id,
@@ -74,7 +74,7 @@ exports.refreshToken = async (token) => {
             roles: user.roles
         });
     } catch (e) {
-        throw new PocError(e.message, e.status);
+        throw new CustomError(e.message, e.status);
     }
 };
 

@@ -2,7 +2,7 @@
 
 import {registrationSchema, loginSchema}      from "../validators/validationSchemas";
 import userService                            from "../services/user-service";
-import PocError                               from '../exception/exception';
+import CustomError                               from '../exception/exception';
 import messageProperties                      from "../utils/messageProperties";
 
 exports.register = async (req, res, next) => {
@@ -10,7 +10,7 @@ exports.register = async (req, res, next) => {
         req.checkBody(registrationSchema);
         const errors = req.validationErrors();
         if (errors) {
-            throw new PocError(errors, 500);
+            throw new CustomError(errors, 500);
         }
         const {email, password, name} = req.body;
         const data = {
@@ -31,7 +31,7 @@ exports.authenticate = async (req, res, next) => {
         req.checkBody(loginSchema);
         const errors = req.validationErrors();
         if (errors) {
-            throw new PocError(errors, 500);
+            throw new CustomError(errors, 500);
         }
         const {email, password} = req.body;
         const data = {

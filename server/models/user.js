@@ -94,7 +94,7 @@ const LoginSchema = new Schema({
 
 LoginSchema.static("canAthenticate", async function(key){
     const login = await this.findOne({identityKey: key});
-    
+
     if(!login || login.failedAttempts < 5){
         return true;
     }
@@ -108,7 +108,7 @@ LoginSchema.static("canAthenticate", async function(key){
     return false;
 });
 
-//Adding new or updating existing login attempt
+
 LoginSchema.static("failedLoginAttempt", async function(key){
     const query = {identityKey: key};
     const update = {$inc: {failedAttempts: 1}, timeout: new Date(), inProgress: false};
