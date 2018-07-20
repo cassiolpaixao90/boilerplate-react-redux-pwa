@@ -15,7 +15,14 @@ const all = {
       proto: setting.proto,
       addr: setting.addr,
       authtoken: setting.authtoken
-    }
+    },
+    secrets: {
+      session: setting.secrets.session,
+      salt: setting.secrets.salt
+  },
+  mongo: {
+      uri: setting.mongo.uri
+  }
 };
 
 module.exports = _.assign(all, setting);
