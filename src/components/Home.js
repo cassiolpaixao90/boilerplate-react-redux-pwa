@@ -19,6 +19,11 @@ import SpeedDials from './SpeedDials';
 const initialPlatform = ons.platform.isAndroid() ? 'android' : 'ios';
 
 class Home extends React.Component {
+
+  constructor(props){
+    super(props)
+  }
+
   gotoComponent(component, key) {
     this.props.navigator.pushPage({comp: component, props: { key }});
   }

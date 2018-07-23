@@ -14,6 +14,9 @@ class Popovers extends React.Component {
     this.state = {
       isOpen: false
     };
+
+    this.showPopover =  this.showPopover.bind(this);
+    this.getTarget = this.getTarget.bind(this);
   }
 
   showPopover() {
@@ -51,7 +54,7 @@ class Popovers extends React.Component {
         <div style={{textAlign: 'center'}}>
           <br />
           <div
-            onClick={this.showPopover.bind(this)}
+            onClick={this.showPopover}
             style={{
             width: '100px',
             height: '100px',
@@ -66,7 +69,7 @@ class Popovers extends React.Component {
         <Popover
           direction="down"
           isOpen={this.state.isOpen}
-          getTarget={this.getTarget.bind(this)}>
+          getTarget={this.getTarget}>
           <div style={{
             textAlign: 'center',
             lineHeight: '100px'

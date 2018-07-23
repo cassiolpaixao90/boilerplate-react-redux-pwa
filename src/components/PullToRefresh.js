@@ -19,6 +19,9 @@ class PullToRefresh extends React.Component {
       pullHookState: 'initial',
       data: this.getRandomData()
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.handleLoad = this.handleLoad.bind(this)
   }
 
   getRandomName() {
@@ -114,7 +117,7 @@ class PullToRefresh extends React.Component {
 
     return (
       <Page renderToolbar={this.renderToolbar}>
-        <PullHook onChange={this.handleChange.bind(this)} onLoad={this.handleLoad.bind(this)}>
+        <PullHook onChange={this.handleChange} onLoad={this.handleLoad}>
           {content}
         </PullHook>
 

@@ -23,7 +23,9 @@ class SideMenu extends React.Component {
       isOpen: false
     };
 
-    this.show =  this.show.bind(this)
+    this.show =  this.show.bind(this);
+    this.renderToolbar = this.renderToolbar.bind(this);
+    this.hide = this.hide.bind(this);
   }
 
   hide() {
@@ -63,8 +65,8 @@ class SideMenu extends React.Component {
           <SplitterSide
             side='right'
             isOpen={this.state.isOpen}
-            onClose={this.hide.bind(this)}
-            onOpen={this.show.bind(this)}
+            onClose={this.hide}
+            onOpen={this.show}
             collapse={true}
             width={240}
             swipeable={true}>
@@ -78,7 +80,7 @@ class SideMenu extends React.Component {
           </SplitterSide>
 
           <SplitterContent>
-            <Page renderToolbar={this.renderToolbar.bind(this)}>
+            <Page renderToolbar={this.renderToolbar}>
               <p style={{textAlign: 'center'}}>
                 Swipe left to open menu!
               </p>
