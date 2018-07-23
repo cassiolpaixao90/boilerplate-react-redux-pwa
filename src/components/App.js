@@ -1,24 +1,27 @@
-import React from "react";
-import PropTypes from 'prop-types'
-import { connect } from "react-redux";
+import React from 'react';
+import { Navigator } from 'react-onsenui';
+import Tabs from './Tabs'
 
 class App extends React.Component {
+
+  constructor(props){
+    super(props)
+  }
+
+  renderPage(route, navigator) {
+    route.props = route.props || {};
+    route.props.navigator = navigator;
+    return React.createElement(route.comp, route.props);
+  }
+
   render() {
     return (
-      <div className="container-fluid">
-        {this.props.children}
-      </div>
+      <Navigator
+        initialRoute={{comp: Tabs, props: { key: 'tabs' }}}
+        renderPage={this.renderPage}
+      />
     );
   }
 }
 
-
-App.propTypes = {
-  children: PropTypes.object.isRequired
-};
-
-function mapStateToProps(state, ownProps){
-    return {}
-}
-
-export default connect(mapStateToProps)(App);
+export default App;
