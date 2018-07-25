@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigator } from 'react-onsenui';
 import Tabs from './Tabs'
+import Login from '../components/login/Login'
 
 class App extends React.Component {
 
@@ -17,7 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <Navigator
-        initialRoute={{comp: Tabs, props: { key: 'tabs' }}}
+        initialRoute={{comp: Login, props: { key: 'login' }}}
         renderPage={this.renderPage}
       />
     );
