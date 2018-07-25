@@ -38,23 +38,22 @@ class Login extends React.Component{
   render(){
 
     return(
-      <Page>
-      <Card>
-       <form onSubmit={this.handleSubmit}>
+      <div className="container">
+        <div className="inner-container">
+        <form onSubmit={this.handleSubmit}>
           <p>Sign in or sign up by entering your email and password.</p>
+          <Input
+            type="text"
+            value={this.state.email}
+            onChange={this.handleEmailChange}
+            placeholder="Email" float />
 
           <Input
-              className="size-input"
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-              placeholder="Email" float />
-          <br/>
-          <br/>
-          <Input
-              className="size-input"
-              value={this.state.password}
-              onChange={this.handlePasswordChange}
-              placeholder="Password" float />
+            type="password"
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
+            placeholder="Password" float />
+
           <p className="error">
             {this.state.error}
           </p>
@@ -62,14 +61,8 @@ class Login extends React.Component{
             Login
           </button>
         </form>
-      </Card>
-
-        {/* <div className="login-form">
-          <Input className="text-input--underbar" value={this.state.name} onChange={this.handleNameChange.bind(this)} placeholder="Email" float />
-          <Input className="text-input--underbar" value={this.state.name} onChange={this.handleNameChange.bind(this)} placeholder="Password" float />
-          <br/><br/>
-        </div> */}
-      </Page>
+        </div>
+      </div>
     );
   }
 

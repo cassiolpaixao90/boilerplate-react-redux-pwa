@@ -1,197 +1,34 @@
-
-#app {
-   padding: 0;
-}
-
-.divider{
-  border-top: 2px solid #202627
-}
-
-/* .centered{
-  margin: 0 auto;
-  padding: 0 1em;
-} */
-
-.site-title {
-	margin-bottom: 0;
-}
-.main-menu {
-	padding: .4em 1em;
-	color: white;
-	background: #202627;
-}
-
-.post-content {
-	padding: 0 1.4em 1.4em;
-}
-
-.sidebar {
-	padding: .5em 1.4em 3em;
-	background: #202627;
-    overflow: hidden;
-}
-
-.example-menu {
-    padding-bottom: 1em;
-}
-
-.example-menu ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-.example-menu a {
-	display: block;
-	padding: .4em 0;
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.5s ease;
-}
-
-.example-menu a:hover,
-.example-menu a:focus {
-	padding: .4em 1em;
-	background: #202627;
-	color: white;
-}
-
-.footer-area {
-	padding: .4em 1em;
-	text-align: center;
-	background: hsl(0, 0%, 75%);
-}
-
-/* Sidebar switcher buttons */
-
-@media screen and (max-width: 50em) {
-    /* Hide switcher on small screens */
-    .sidebar-switcher {
-        display: none;
-    }
-}
-
-@media screen and (min-width: 50em) {
-
-	.sidebar-switcher {
-		position: absolute;
-		right: 0;
-		padding: .4em 1em;
-		color:  #202627;;
-	}
-
-	.sidebar-switcher a {
-		color:  #202627;;
-		padding-left: .4em;
-	}
-
-	.sidebar-switcher a:hover,
-	.sidebar-switcher a:focus {
-		color:  #202627;
-	}
-}
-
-/* Flexbox stuff */
-
-@media screen and (min-width: 50em) {
-
-    .outer-wrap {
-        align-items: center;
-        padding: 50px 50px 50px 50px;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-                flex-direction: column;
-    }
-
-    .content {
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-    }
-
-    .main-area {
-        -webkit-flex: 1 1 auto;
-            -ms-flex: 1 1 auto;
-                flex: 1 1 auto;
-        -webkit-order: 1;
-            -ms-flex-order: 1;
-                order: 1;
-    }
-
-    .post-content {
-        max-width: 44em;
-    }
-
-    .sidebar {
-        -webkit-flex: 0 0 12em;
-            -ms-flex: 0 0 12em;
-                flex: 0 0 12em;
-        -webkit-order: 2;
-            -ms-flex-order: 2;
-                order: 2;
-        transition: padding .5s ease, -webkit-flex .5s ease, color .2s ease-in .3s;
-        transition: padding .5s ease, -ms-flex .5s ease, color .2s ease-in .3s;
-        transition: padding .5s ease, flex .5s ease, color .2s ease-in .3s;
-    }
-
-    .sidebar-left {
-        -webkit-order: 0;
-            -ms-flex-order: 0;
-                order: 0;
-                flex: auto;
-                max-width: 240px;
-                min-width: 220px;
-    }
-
-    .no-sidebar {
-        -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-                flex-direction: column;
-    }
-
-	.hide {
-        -webkit-flex: 0 0 0;
-            -ms-flex: 0 0 0;
-                flex: 0 0 0;
-		padding: 0;
-        color: hsla(0, 0%, 0%, 0);
-        transition: color .2s ease, -webkit-flex .5s ease .3s, padding .5s ease .3s;
-        transition: color .2s ease, -ms-flex .5s ease .3s, padding .5s ease .3s;
-        transition: color .2s ease, flex .5s ease .3s, padding .5s ease .3s;
-	}
-
-    .hide a {
-        color: hsla(0, 0%, 0%, 0);
-    }
-
-}
-
-.diamond {
-  width: 100px;
-  height: 100px;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  transform: rotate(45deg);
-  outline: 1px solid black;
-  position: relative;
+body {
+  height: 100vh;
+  background: linear-gradient(to bottom, #FD8271 , #A62824);
+  font-family: 'Khula', sans-serif;
+  color: #2f2f2f;
   overflow: hidden;
-  margin: 60px 0 0 60px;
+  margin: 0 8px;
 }
 
-.diamond img {
-	max-height: 142%;
-	transform: rotate(-45deg);
-	z-index: -1;
-  position: relative;
-  width: 142px;
-  margin-left: -19px;
-  margin-top: -22px;
+* {
+  box-sizing: border-box;
 }
 
-.profile{
-  text-align: center;
-  margin-top: 50px;
+#root {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.container {
+  max-width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  height: 90%;
+  padding: 10px;
+  flex: 1;
+}
+
+.inner-container {
+  height: 100%;
+  overflow: hidden;
 }

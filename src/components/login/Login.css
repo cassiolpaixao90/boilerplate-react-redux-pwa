@@ -1,3 +1,25 @@
-.size-input{
-  width: 100%
+#LoginContainer form {
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80%;
+}
+
+#LoginContainer form p {
+  font-size: .8em;
+  text-align:center;
+}
+
+ #LoginContainer form ons-input {
+  width: 200px;
+  margin: 10px 0;
+  height: 30px;
+}
+
+.error {
+  margin: 5px 0;
+  color: red;
 }
