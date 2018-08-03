@@ -1,28 +1,26 @@
-import React from 'react'
+import React from "react";
 
-import {
-  Page,
-  Input,
-  Card
-} from 'react-onsenui';
+import { Page, Input, Button } from "react-onsenui";
 
-import './Login.css';
+import "./Login.css";
 
-class Login extends React.Component{
-
-  constructor(props){
-    super(props)
-    this.state = { email: '', password: '', error: '' };
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      error: ""
+    };
   }
-
 
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({ error: '' });
+    this.setState({ error: "" });
     if (this.state.email && this.state.password) {
       this.login();
     } else {
-      this.setState({ error: 'Please fill in both fields.' });
+      this.setState({ error: "Please fill in both fields." });
     }
   };
 
@@ -34,39 +32,42 @@ class Login extends React.Component{
     this.setState({ password: event.target.value });
   };
 
-
-  render(){
-
-    return(
-      <div className="container">
-        <div className="inner-container">
-        <form onSubmit={this.handleSubmit}>
-          <p>Sign in or sign up by entering your email and password.</p>
-          <Input
-            type="text"
-            value={this.state.email}
-            onChange={this.handleEmailChange}
-            placeholder="Email" float />
-
-          <Input
-            type="password"
-            value={this.state.password}
-            onChange={this.handlePasswordChange}
-            placeholder="Password" float />
-
-          <p className="error">
-            {this.state.error}
-          </p>
-          <button className="red light" type="submit">
-            Login
-          </button>
-        </form>
+  render() {
+    return (
+      <Page>
+        <div className="form-login">
+          <div>
+            <p>
+              <Input
+                id="email"
+                className="marginInput"
+                modifier="material"
+                placeholder="E-mail"
+                float
+              />
+            </p>
+            <p>
+              <Input
+                id="password"
+                className="marginInput"
+                modifier="material"
+                type="password"
+                placeholder="Password"
+                float
+              />
+            </p>
+          </div>
+          <div className="marginButton">
+            <p>
+              <Button modifier="large">Sign in</Button>
+            </p>
+            <p>
+              <Button modifier="large">Sign up</Button>
+            </p>
+          </div>
         </div>
-      </div>
+      </Page>
     );
   }
-
-
-
 }
-export default Login
+export default Login;

@@ -1,25 +1,27 @@
-#LoginContainer form {
-  max-width: 300px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 80%;
+.container {
+  padding: 15px 15px;
+  position: absolute;
+  top: 30%
 }
 
-#LoginContainer form p {
-  font-size: .8em;
-  text-align:center;
+.marginInput {
+  width: 100%;
 }
 
- #LoginContainer form ons-input {
-  width: 200px;
-  margin: 10px 0;
-  height: 30px;
+ons-input .text-input {
+  margin-top: 10px;
 }
 
-.error {
-  margin: 5px 0;
-  color: red;
+ons-input span {
+  margin-top: 10px;
+}
+
+.marginButton {
+  margin-top: 30px;
+}
+
+.form-login {
+  text-align: center;
+  margin-top: 50%;
+  padding: 15px 15px;
 }
