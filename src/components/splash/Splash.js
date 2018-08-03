@@ -1,6 +1,7 @@
 import React from 'react';
 import {Page} from 'react-onsenui';
 import './Splash.css'
+import Login from '../login/Login'
 
 class Splash extends React.Component {
     constructor(props) {
@@ -18,13 +19,16 @@ class Splash extends React.Component {
             }, () => {
                 if (this.state.counter === 0) {
                     clearInterval(this.interval);
-                    this
-                        .props
-                        .popPage();
+                    this.login()
                 }
             });
         }, 400);
     }
+
+    login(){
+      this.props.navigator.pushPage({comp: Login, props: { key: 'login-page' }});
+    }
+
 
     componentWillUnmount() {
         if (this.interval) {

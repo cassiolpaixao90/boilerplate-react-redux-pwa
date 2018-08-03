@@ -3,12 +3,14 @@ import React from "react";
 import { Page, Input, Button } from "react-onsenui";
 
 import "./Login.css";
+import Register from '../register/Register'
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
+      name: "",
       password: "",
       error: ""
     };
@@ -31,6 +33,19 @@ class Login extends React.Component {
   handlePasswordChange = event => {
     this.setState({ password: event.target.value });
   };
+
+  register(){
+    const nav = this.props.navigator;
+
+    nav.pushPage({
+      comp: Register,
+      props: {
+        key: "register-page",
+        popPage: () => nav.popPage({animation: 'animation-none', animationOptions: {duration: 0.8}})
+      }
+    }, {animation: 'animation-none', animationOptions: {duration: 0.8}});
+    // this.props.navigator.pushPage({comp: Register, props: { key: 'register-page' }});
+  }
 
   render() {
     return (
@@ -59,10 +74,10 @@ class Login extends React.Component {
           </div>
           <div className="marginButton">
             <p>
-              <Button modifier="large">Sign in</Button>
+              <Button modifier="large" >Sign in</Button>
             </p>
             <p>
-              <Button modifier="large">Sign up</Button>
+              <Button modifier="large" onClick={this.register.bind(this)} >Sign up</Button>
             </p>
           </div>
         </div>
