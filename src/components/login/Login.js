@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Page, Input, Button } from "react-onsenui";
-
 import "./Login.css";
 import Register from '../register/Register'
+import Tabs from '../Tabs';
 
 class Login extends React.Component {
   constructor(props) {
@@ -25,6 +25,10 @@ class Login extends React.Component {
       this.setState({ error: "Please fill in both fields." });
     }
   };
+
+  main(){
+    this.props.navigator.pushPage({comp: Tabs, props: { key: 'tabs-page' }});
+  }
 
   handleEmailChange = event => {
     this.setState({ email: event.target.value });
@@ -74,7 +78,7 @@ class Login extends React.Component {
           </div>
           <div className="marginButton">
             <p>
-              <Button modifier="large" >Sign in</Button>
+              <Button modifier="large" onClick={this.main.bind(this)}>Sign in</Button>
             </p>
             <p>
               <Button modifier="large" onClick={this.register.bind(this)} >Sign up</Button>
