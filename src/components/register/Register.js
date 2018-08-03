@@ -2,9 +2,9 @@ import React from "react";
 
 import { Page, Input, Button } from "react-onsenui";
 
-import "./Login.css";
+import "./Register.css";
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,14 +35,23 @@ class Login extends React.Component {
   render() {
     return (
       <Page>
-        <div className="form-login">
+        <div className="form-register">
           <div>
+            <p>
+              <Input
+                id="name"
+                className="marginInput"
+                modifier="material"
+                placeholder="Name"
+                float
+              />
+            </p>
             <p>
               <Input
                 id="email"
                 className="marginInput"
                 modifier="material"
-                placeholder="Email"
+                placeholder="E-mail"
                 float
               />
             </p>
@@ -59,9 +68,6 @@ class Login extends React.Component {
           </div>
           <div className="marginButton">
             <p>
-              <Button modifier="large">Sign in</Button>
-            </p>
-            <p>
               <Button modifier="large">Sign up</Button>
             </p>
           </div>
@@ -70,4 +76,4 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default Register;
