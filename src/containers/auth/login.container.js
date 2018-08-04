@@ -3,25 +3,29 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import PropTypes from 'prop-types'
 import LoginForm from '../../components/login/LoginForm'
-import Tabs from '../../components/Tabs';
 
 import Register from '../../components/register/Register'
-import * as userActions from "../../actions/user.action";
+import * as authActions from "../../actions/auth.action";
 
 class Login extends React.Component {
     constructor(props, context) {
     super(props, context);
     this.state = {
       user: Object.assign({}, this.props.user),
-      errors: {},
+      errors: Object.assign({}, this.props.error),
       saving: false
     };
     this.updateUserState = this.updateUserState.bind(this);
-    this.saveUser = this.saveUser.bind(this);
+    this.login = this.login.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({user: Object.assign({}, nextProps.user)});
+    debugger
+    const {errors, user} = nextProps;
+    this.setState({
+      user: Object.assign({}, user),
+      errors: Object.assign({}, errors)
+    });
   }
 
   updateUserState= event => {
@@ -31,19 +35,18 @@ class Login extends React.Component {
     return this.setState({ user: user });
   }
 
-  saveUser = event => {
+  login = event => {
+    const {authActions} = this.props;
     event.preventDefault();
     this.setState({saving: true});
-    debugger
-    this.props.actions.login(this.state.user)
+    authActions.login(this.state.user);
+    // .then(() =>{
+    //   // this.redirect();
+    //   console.log("opa");
 
-    .then(() =>{
-      // this.redirect();
-      console.log("opa");
-
-    }).catch(error =>{
-      this.setState({saving: false});
-    });
+    // }).catch(error =>{
+    //   this.setState({saving: false});
+    // });
   }
 
   redirect() {
@@ -54,7 +57,7 @@ class Login extends React.Component {
     return (
       <LoginForm
         onChange={this.updateUserState}
-        onSave={this.saveUser}
+        onSave={this.login}
         user={this.state.user}
         errors={this.state.errors}
         saving={this.state.saving}
@@ -64,21 +67,27 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  user: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired
+  user: PropTypes.object,
+  errors: PropTypes.object,
 };
 
-
-function mapStateToProps(state, ownProps) {
-  let user = { id: '', email: '', password: ''};
+function mapStateToProps(state) {
+  const {login} = state;
   return {
-    user: user
-  };
+      user: login.user,
+      error: login.error
+  }
 }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(userActions, dispatch)
+//   };
+// }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(userActions, dispatch)
+      authActions: bindActionCreators(authActions, dispatch),
   };
 }
 

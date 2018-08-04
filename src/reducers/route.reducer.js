@@ -1,13 +1,13 @@
 import * as types from "../constants/type.route";
-import initialReducer from './initial.reducer';
+import {initialState} from '../constants/initialState';
 
-export default (state = initialReducer.initState, action) => {
+export default (state = initialState.init, action) => {
   switch (action.type) {
     case types.ROUTE_SET: {
       return action.routeId
     }
     case types.ROUTE_CLEANUP: {
-      return initialReducer.initState
+      return initialState.init
     }
     default: {
       return state
