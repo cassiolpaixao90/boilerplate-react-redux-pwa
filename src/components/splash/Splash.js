@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import {Page} from 'react-onsenui';
-import Login from '../login/Login'
-import './Splash.css'
+// import Login from '../login/Login'
 import pwa from '../../components/splash/pwa.png';
+import Login from '../../containers/login/login.container'
+
+import './Splash.css'
 
 class Splash extends React.Component {
     constructor(props) {

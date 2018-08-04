@@ -1,0 +1,19 @@
+.marginInput {
+  width: 100%;
+}
+
+ons-input .text-input {
+  margin-top: 0 !important;
+}
+
+.marginButton {
+  margin-top: 30px;
+}
+
+.form-group{
+  text-align: left
+}
+
+.form-group-has-error{
+  color: red
+}
