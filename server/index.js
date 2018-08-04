@@ -13,8 +13,8 @@ const ngrok         = (isDev && setting.envTunel) ? require('ngrok') : false;
 const { resolve }   = path;
 const app           = express();
 
-//scp
-responseHeaderConfig(app);
+// //scp
+// responseHeaderConfig(app);
 
 app.use(bodyParser.json({
   limit: '5mb'

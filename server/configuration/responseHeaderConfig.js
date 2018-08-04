@@ -6,13 +6,12 @@ const responseHeaderConfig = (app) => {
 
     app.use(helmet.xssFilter());
     app.use(helmet.contentSecurityPolicy({
-
         directives: {
             defaultSrc: ["'none'"],
-            scriptSrc:  ["'self'", "'unsafe-inline'", "http://code.jquery.com"],
+            scriptSrc:  ["'self'", "'unsafe-inline'"],
             styleSrc:   ["'self'", "'unsafe-inline'", "https:/fonts.googleapis.com"],
             imgSrc:     ["'self'", "'data:'"],
-            fontSrc:    ["'self'", "https:/fonts.gstatic.com", "data:"],
+            fontSrc:    ["'self'", "https:/fonts.gstatic.com", "https:/fonts.googleapis.com", "data:"],
             connectSrc: ["'self'"],
             reportUri:  "/cspviolation"
         }

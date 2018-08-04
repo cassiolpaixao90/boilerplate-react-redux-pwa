@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import desafio from './desafioReducer';
+import route from './route.reducer';
 
 const rootReducer = combineReducers({
-  desafio
+  route
 });
 
 export default rootReducer;
