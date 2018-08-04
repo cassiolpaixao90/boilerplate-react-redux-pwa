@@ -78,5 +78,10 @@ module.exports = {
       template: './src/index.html',
       inject: true
     })
-  ]
+  ],
+  externals: {
+    config: JSON.stringify({
+        apiUrl: 'http://localhost:9000'
+    })
+}
 }

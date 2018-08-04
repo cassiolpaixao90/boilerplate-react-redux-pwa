@@ -5,7 +5,7 @@ import Login from './components/login/Login'
 export const initialRouteId = 'home'
 export const Routes = {
   home: { component: Home, title: 'Home', id: 'home' },
-  login: { component: Login, title: 'Login', id: 'login' },
+  login: { component: Login, title: 'Login', id: 'login-page' },
   splash: { component: Splash, title: 'Splash', id: 'splash' }
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import {Page} from 'react-onsenui';
 import Login from '../login/Login'
 import './Splash.css'
@@ -6,29 +7,23 @@ import pwa from '../../components/splash/pwa.png';
 
 class Splash extends React.Component {
     constructor(props) {
-        super(props);
-
-        this.state = {
-            counter: 5
-        };
+      super(props);
+      this.state = { counter: 5 };
     }
 
     componentDidMount() {
         this.interval = setInterval(() => {
-            this.setState({
-                counter: this.state.counter - 1
-            }, () => {
-                if (this.state.counter === 0) {
-                    clearInterval(this.interval);
-                    this.login()
-                }
+            this.setState({ counter: this.state.counter - 1 }, () => {
+              if (this.state.counter === 0) {
+                  clearInterval(this.interval);
+                  this.login()
+              }
             });
-        }, 400);
+        }, this.props.interval);
     }
 
     login() {
-        this
-            .props
+        this.props
             .navigator
             .pushPage({
                 comp: Login,
@@ -53,20 +48,28 @@ class Splash extends React.Component {
                     textAlign: 'center',
                     height: '100%'
                 }}>
-                <span
-                    className="animation"
-                    style={{
-                    display: 'inline-block',
-                    position: 'relative',
-                    top: '50%',
-                    fontSize: '26px',
-                    transform: 'translate3d(0, -50%, 0)'}}>
-                  <img src={pwa} alt="splash"/>
-                </span>
+                  <span
+                      className="animation"
+                      style={{
+                      display: 'inline-block',
+                      position: 'relative',
+                      top: '50%',
+                      fontSize: '26px',
+                      transform: 'translate3d(0, -50%, 0)'}}>
+                    <img src={pwa} alt="splash"/>
+                  </span>
                 </div>
             </Page>
         );
     }
 }
+
+Splash.defaultProps = {
+  interval: 400
+};
+
+Splash.propTypes = {
+  interval: PropTypes.number
+};
 
 export default Splash;
