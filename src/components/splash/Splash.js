@@ -1,7 +1,8 @@
 import React from 'react';
 import {Page} from 'react-onsenui';
-import './Splash.css'
 import Login from '../login/Login'
+import './Splash.css'
+import pwa from '../../components/splash/pwa.png';
 
 class Splash extends React.Component {
     constructor(props) {
@@ -25,10 +26,17 @@ class Splash extends React.Component {
         }, 400);
     }
 
-    login(){
-      this.props.navigator.pushPage({comp: Login, props: { key: 'login-page' }});
+    login() {
+        this
+            .props
+            .navigator
+            .pushPage({
+                comp: Login,
+                props: {
+                    key: 'login-page'
+                }
+            });
     }
-
 
     componentWillUnmount() {
         if (this.interval) {
@@ -41,19 +49,20 @@ class Splash extends React.Component {
             <Page>
                 <div
                     style={{
+                    backgroundColor: '#FFF',
                     textAlign: 'center',
                     height: '100%'
                 }}>
-                    <span className="animation"
-                        style={{
-                        display: 'inline-block',
-                        position: 'relative',
-                        top: '50%',
-                        fontSize: '26px',
-                        transform: 'translate3d(0, -50%, 0)'
-                    }}>
-                        PWA<br/>
-                    </span>
+                <span
+                    className="animation"
+                    style={{
+                    display: 'inline-block',
+                    position: 'relative',
+                    top: '50%',
+                    fontSize: '26px',
+                    transform: 'translate3d(0, -50%, 0)'}}>
+                  <img src={pwa} alt="splash"/>
+                </span>
                 </div>
             </Page>
         );
