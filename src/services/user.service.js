@@ -1,6 +1,7 @@
 import config from 'config';
 import * as axios    from "axios";
 import { authHeader } from '../helpers/auth-header.helper';
+import { API_URL } from '../helpers/config'
 const client = axios.create({baseURL: "http://localhost:9000/api"});
 
 
@@ -32,13 +33,13 @@ export const userService = {
 // }
 
 function login (creds) {
-  debugger
-  return client.post("http://localhost:9000/api/user/authenticate", creds)
-      .then(function (response) {
-          return response.data;
-      })
-      .catch(function (err) {
-          throw err;
+      return axios.post(`${API_URL}/api/user/authenticate`, creds)
+      .then(response => {
+          debugger
+          localStorage.setItem('user', JSON.stringify(response.data.token));
+          return Promise.resolve(response.data)
+      }).catch((err) => {
+        return Promise.reject(err.response.data)
       });
 };
 

@@ -6,7 +6,8 @@ export const initialRouteId = 'home'
 export const Routes = {
   home: { component: Home, title: 'Home', id: 'home' },
   login: { component: Login, title: 'Login', id: 'login-page' },
-  splash: { component: Splash, title: 'Splash', id: 'splash' }
+  splash: { component: Splash, title: 'Splash', id: 'splash' },
+  tabs: { component: Tabs, title: 'Tabs', id: 'tabs-page' }
 }
 
 export const getRoute = id => Routes[id];

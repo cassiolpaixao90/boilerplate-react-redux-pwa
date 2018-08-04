@@ -109,15 +109,12 @@ function userProfileUpdateFailure(errorMessage) {
 }
 
 export function login(user) {
-  console.log("user : ",user);
-
   return dispatch => {
     dispatch(userAuthenticationRequested());
-    userService.login(user)
+    return userService.login(user)
       .then(user => {
         dispatch(userAuthenticationSuccess(user));
         dispatch(userDataUpdate(user));
-        // dispatch(routerActions.push(returnUrl || "/"));
       })
       .catch(error => {
         dispatch(userAuthenticationFailure(error.data));

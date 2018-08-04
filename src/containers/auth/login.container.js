@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import LoginForm from '../../components/login/LoginForm'
 
 import Register from '../../components/register/Register'
+import Tabs from '../../components/Tabs'
 import * as authActions from "../../actions/auth.action";
 
 class Login extends React.Component {
@@ -39,14 +40,11 @@ class Login extends React.Component {
     const {authActions} = this.props;
     event.preventDefault();
     this.setState({saving: true});
-    authActions.login(this.state.user);
-    // .then(() =>{
-    //   // this.redirect();
-    //   console.log("opa");
-
-    // }).catch(error =>{
-    //   this.setState({saving: false});
-    // });
+    authActions.login(this.state.user).then((data) => {
+      this.props.navigator.pushPage({ comp: Tabs,props: { key: 'tabs-page' }});
+    }).catch(error =>{
+      this.setState({saving: false, errors: error});
+    });
   }
 
   redirect() {
@@ -78,12 +76,6 @@ function mapStateToProps(state) {
       error: login.error
   }
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(userActions, dispatch)
-//   };
-// }
 
 function mapDispatchToProps(dispatch) {
   return {
