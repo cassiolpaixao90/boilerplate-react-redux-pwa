@@ -1,6 +1,6 @@
 # React + Redux + PWA
 
-![boilerplate-react-redux-pwa]()
+![boilerplate-react-redux-pwa](https://raw.githubusercontent.com/cassiolpaixao90/boilerplate-react-redux-pwa/master/src/components/splash/pwa.png)
 
 It's sample boilerplate react, redux and pwa 
 
