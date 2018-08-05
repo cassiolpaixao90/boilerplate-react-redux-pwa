@@ -16,6 +16,9 @@ Please consult the steps to deploy your project
 - NPM or YARN
 - WebPack CLI
 - MLab
+- Postman
+- NgRok
+ 
  
 ### Technologies
 
@@ -24,16 +27,15 @@ Please consult the steps to deploy your project
 | NodeJS | [https://nodejs.org/en/download/](https://nodejs.org/en/download/) |
 | Nodemon | [https://www.npmjs.com/package/nodemon](https://www.npmjs.com/package/nodemon) |
 | NPM | [https://docs.npmjs.com/](https://docs.npmjs.com/)  |
-| WebPack CLI | [https://webpack.js.org/](https://webpack.js.org/)  |
-| ajv | [https://github.com/epoberezkin/ajv](https://github.com/epoberezkin/ajv) |
-| babel-cli | [https://babeljs.io/docs/en/babel-cli](https://babeljs.io/docs/en/babel-cli) |
-| babel-core  | [https://babeljs.io/docs/en/babel-core](https://babeljs.io/docs/en/babel-core) |
-| babel-loader | [https://github.com/babel/babel-loader](https://github.com/babel/babel-loader) |
-| babel-minify-webpack-plugin | [https://github.com/webpack-contrib/babel-minify-webpack-plugin](https://github.com/webpack-contrib/babel-minify-webpack-plugin) |
-| babel-polyfill | [https://babeljs.io/docs/en/babel-plugin-transform-runtime](https://babeljs.io/docs/en/babel-plugin-transform-runtime) |
-| babel-plugin-transform-runtime | [https://babeljs.io/docs/en/babel-polyfill.html](https://babeljs.io/docs/en/babel-polyfill.html) |
-| babel-preset-env | [https://github.com/babel/babel-preset-env](https://github.com/babel/babel-preset-env) |
-
+| WebPack 4 | [https://webpack.js.org/](https://webpack.js.org/)  |
+| Babel | [https://github.com/epoberezkin/ajv](https://github.com/epoberezkin/ajv) |
+| NgRok  | [https://ngrok.com/](https://ngrok.com/) |
+| ReactJS | [https://github.com/babel/babel-loaderhttps://reactjs.org/](https://reactjs.org/) |
+| Redux | [https://redux.js.org/](https://redux.js.org/) |
+| PWA | [https://developers.google.com/web/progressive-web-apps/](https://developers.google.com/web/progressive-web-apps/) |
+| Onsenui | [https://onsen.io/](https://onsen.io/) |
+| JWT | [https://jwt.io/](https://jwt.io/) |
+| ES6 | [http://es6-features.org/#Constants](http://es6-features.org/#Constants) |
 
 
 ## Installing
@@ -53,25 +55,26 @@ cd boilerplate-react-redux-pwa
 npm install
 ```
 
-<!-- **3. Run generate certificate localhost HTTPS**
+
+**3. Run generate certificate HTTPS in mode DEV ( Optional )**
 
 ```bash
 npm run certs
-``` -->
+```
 
-**3. Run mode Development**
+**4. Run mode Development**
 
 ```bash
 npm run dev
 ```
 
-**4. Run mode Production**
+**5. Run mode Production**
 
 ```bash
 npm run prod
 ```
 
-## boilerplate-react-pwa-api-postman-collection
+## API in Postman Collection
 
 **Try out the Boilerplate-React-PWA REST API using Postman with this ready-made Postman collection.**
 
