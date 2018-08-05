@@ -2,13 +2,12 @@ import React from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import PropTypes from 'prop-types'
-import LoginForm from '../../components/login/LoginForm'
+import RegisterForm from '../../components/register/RegisterForm'
 
-import Register from '../../components/register/Register'
 import Tabs from '../../components/Tabs'
 import * as authActions from "../../actions/auth.action";
 
-class Login extends React.Component {
+class Register extends React.Component {
     constructor(props, context) {
     super(props, context);
     this.state = {
@@ -17,7 +16,7 @@ class Login extends React.Component {
       saving: false
     };
     this.updateUserState = this.updateUserState.bind(this);
-    this.login = this.login.bind(this);
+    this.register = this.register.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +34,7 @@ class Login extends React.Component {
     return this.setState({ user: user });
   }
 
-  login = event => {
+  register = event => {
     event.preventDefault();
     this.props.authActions.login(this.state.user).then((data) => {
       this.props.navigator.pushPage({ comp: Tabs,props: { key: 'tabs-page' }});
@@ -50,9 +49,9 @@ class Login extends React.Component {
 
   render() {
     return (
-      <LoginForm
+      <RegisterForm
         onChange={this.updateUserState}
-        onSave={this.login}
+        onSave={this.register}
         user={this.state.user}
         errors={this.state.errors}
         saving={this.state.saving}
@@ -61,16 +60,16 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
+Register.propTypes = {
   user: PropTypes.object,
-  errors: PropTypes.string,
+  errors: PropTypes.object,
 };
 
 function mapStateToProps(state) {
-  const {login} = state;
+  const {register} = state;
   return {
-      user: login.user,
-      errors: login.errors
+      user: register.user,
+      error: register.error
   }
 }
 
@@ -80,4 +79,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

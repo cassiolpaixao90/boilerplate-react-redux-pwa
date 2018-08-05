@@ -46,23 +46,24 @@ setup(app, {
   publicPath: '/',
 });
 
-const port = setting.server.port
-const host = setting.server.host
 
+// const port = setting.server.port
+// const host = setting.server.host
+
+const { port, host } = setting.server;
 
 app.listen(port, host, async err => {
   if (err) {
     return logger.error(err.message);
   }
   if (ngrok) {
-    let url;
-    try {
-      const options = setting.ngrok;
-      url = await ngrok.connect(options);
-    } catch (e) {
-      return logger.error(e);
-    }
-    logger.appStarted(port, host, url);
+    const options = setting.ngrok;
+    ngrok.connect(options, (error, url) => {
+      if(error){
+        return logger.error(`${error.msg}`)
+      }
+      logger.appStarted(port, host, url);
+    })
   } else {
     logger.appStarted(port, host);
   }

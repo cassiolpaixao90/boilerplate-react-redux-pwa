@@ -22,20 +22,9 @@ class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     this.setState({error: ""});
-    //     if (this.state.email && this.state.password) {
-    //         this.login();
-    //     } else {
-    //         this.setState({error: "Please fill in both fields."});
-    //     }
-    // };
-
-
-    handleChange(e) {
-      const { name, value } = e.target;
-      this.setState({ [name]: value });
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   }
 
   handleSubmit(e) {
